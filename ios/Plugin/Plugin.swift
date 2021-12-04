@@ -69,9 +69,7 @@ public class AppsflyerPlugin: CAPPlugin, AppsFlyerLibDelegate {
             return call.reject("missing name option")
         }
 
-        guard let values = call.getObject("values") else {
-            return call.reject("missing values option")
-        }
+        let values = call.getObject("values") ?? nil
 
         AppsFlyerLib.shared().logEvent(name: name, values: values, completionHandler: {
             (response: [String: Any]?, error: Error?) in

@@ -1,6 +1,6 @@
 {
   "name": "capacitor-appsflyer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Capacitor AppsFlyer plugin for Android and iOS",
   "main": "plugin.js",
   "module": "esm/index.js",

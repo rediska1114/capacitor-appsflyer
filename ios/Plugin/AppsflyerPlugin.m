@@ -4,7 +4,7 @@
 // Define the plugin using the CAP_PLUGIN Macro, and
 // each method the plugin supports using the CAP_PLUGIN_METHOD macro.
 CAP_PLUGIN(AppsflyerPlugin, "Appsflyer",
-        CAP_PLUGIN_METHOD(setCurrencyCode, CAPPluginReturnPromise);
+         CAP_PLUGIN_METHOD(setCurrencyCode, CAPPluginReturnPromise);
         CAP_PLUGIN_METHOD(setСustomerUserID, CAPPluginReturnPromise);
         CAP_PLUGIN_METHOD(anonymizeUser, CAPPluginReturnPromise);
         CAP_PLUGIN_METHOD(setIsStopped, CAPPluginReturnPromise);

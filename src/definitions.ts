@@ -1,11 +1,5 @@
 import { PluginListenerHandle } from '@capacitor/core';
 
-declare module '@capacitor/core' {
-  interface PluginRegistry {
-    Appsflyer: AppsflyerPlugin;
-  }
-}
-
 export type ConversionDataSuccessListener = (data: {
   installData: any;
 }) => void;

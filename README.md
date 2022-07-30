@@ -121,4 +121,48 @@ export class AppComponent {
 
 ```
 
+## BREAKING CHANGES in 1.x.x version
+
+- AppsFlyer proxy-class has been removed.
+
+  ### Migrate:
+
+  In `ios/App/App/AppDelegate.swift`, update the following:
+
+```diff
+func applicationDidBecomeActive(_: UIApplication) {
+-    Appsflyer.shared.applicationDidBecomeActive()
++    AppsFlyerLib.shared().start()
+}
+
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+-     Appsflyer.shared.application(open: url, options: options)
++     AppsFlyerLib.shared().handleOpen(url, options: options)
+
+      return ApplicationDelegateProxy.shared.application(app, open: url, options: options)
+  }
+
+
+  func application(_ app: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+-   Appsflyer.shared.application(continue: userActivity, restorationHandler: restorationHandler)
++   AppsFlyerLib.shared().continue(userActivity, restorationHandler: nil)
+
+    return ApplicationDelegateProxy.shared.application(app, continue: userActivity, restorationHandler: restorationHandler)
+  }
+
+  func application(_: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+-      Appsflyer.shared.application(didReceiveRemoteNotification: userInfo)
++      AppsFlyerLib.shared().handlePushNotification(userInfo)
+  }
+
+    func application(_: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+    {
+-    Appsflyer.shared.application(didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
++   AppsFlyerLib.shared().registerUninstall(deviceToken)
+    NotificationCenter.default.post(name: .capacitorDidRegisterForRemoteNotifications, object: deviceToken)
+  }
+```
+
+- Added full support for Capacitor 3 and removed compatibility with Capacitor 2
+
 // TODO docs

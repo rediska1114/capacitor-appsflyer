@@ -1,10 +1,10 @@
 PODS:
-  - AppsFlyerFramework (6.4.0):
-    - AppsFlyerFramework/Main (= 6.4.0)
-  - AppsFlyerFramework/Main (6.4.0)
-  - Capacitor (2.4.7):
+  - AppsFlyerFramework (6.4.4):
+    - AppsFlyerFramework/Main (= 6.4.4)
+  - AppsFlyerFramework/Main (6.4.4)
+  - Capacitor (3.6.0):
     - CapacitorCordova
-  - CapacitorCordova (2.4.7)
+  - CapacitorCordova (3.6.0)
 
 DEPENDENCIES:
   - AppsFlyerFramework (~> 6.4.0)
@@ -22,10 +22,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@capacitor/ios"
 
 SPEC CHECKSUMS:
-  AppsFlyerFramework: 9c37252d3edce38257afc065ad48a48c0f004000
-  Capacitor: 4cd7b342d5a15b1f6f333d687358953afd7b2d8b
-  CapacitorCordova: 2c9d6e28d9d86c4da087fa2c3537c1841954bb12
+  AppsFlyerFramework: 6ea252ecb04cf443550576922cddb95b35c958ed
+  Capacitor: 838de9244464702bc67e3d47e81c471b79500059
+  CapacitorCordova: d4a821a58b9b14452b05c583b0e52379e45810e5
 
-PODFILE CHECKSUM: 074be30485006f7f329a9ee9b9909ded406df03f
+PODFILE CHECKSUM: 21fc7aee93c4edac07b0920ab666fb17a04b185b
 
 COCOAPODS: 1.10.1

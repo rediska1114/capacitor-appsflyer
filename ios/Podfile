@@ -5,7 +5,7 @@ def capacitor_pods
   use_frameworks!
   pod "Capacitor", :path => "../node_modules/@capacitor/ios"
   pod "CapacitorCordova", :path => "../node_modules/@capacitor/ios"
-  pod "AppsFlyerFramework", "~> 6.4.0"
+  pod "AppsFlyerFramework", "~> 6.8.1"
 end
 
 target "Plugin" do

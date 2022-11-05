@@ -14,6 +14,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "12.0"
   s.dependency "Capacitor"
   s.swift_version = "5.1"
-  s.dependency "AppsFlyerFramework", "6.4.0"
+  s.dependency "AppsFlyerFramework", "6.8.1"
   s.static_framework = true
 end

@@ -8,21 +8,29 @@ import Foundation
  */
 @objc(AppsflyerPlugin)
 public class AppsflyerPlugin: CAPPlugin, AppsFlyerLibDelegate {
-    override public func load() {
-        let devKey = getConfigValue("devKey") as! String
-        let appId = getConfigValue("appId") as! String
-        let isDebug = getConfigValue("isDebug") as? Bool ?? false
-        let waitForATTUserAuthorization = getConfigValue("waitForATTUserAuthorization") as? Int
-        let useUninstallSandbox = getConfigValue("useUninstallSandbox") as? Bool ?? false
+    @objc func initSdk(_ call: CAPPluginCall) {
+        guard let devKey = call.getString("devKey") else {
+            return call.reject("missing devKey option")
+        }
+        guard let appId = call.getString("appId") else {
+            return call.reject("missing appId option")
+        }
+
+        let isDebug = call.getBool("isDebug", false)
+        let waitForATTUserAuthorization = call.getInt("waitForATTUserAuthorization")
+        let useUninstallSandbox = call.getBool("useUninstallSandbox", false)
 
         AppsFlyerLib.shared().appsFlyerDevKey = devKey
         AppsFlyerLib.shared().appleAppID = appId
         AppsFlyerLib.shared().delegate = self
         AppsFlyerLib.shared().isDebug = isDebug
         AppsFlyerLib.shared().useUninstallSandbox = useUninstallSandbox
+
         if waitForATTUserAuthorization != nil {
             AppsFlyerLib.shared().waitForATTUserAuthorization(timeoutInterval: TimeInterval(waitForATTUserAuthorization!))
         }
+
+        call.resolve()
     }
 
     @objc func setCurrencyCode(_ call: CAPPluginCall) {
@@ -234,7 +242,7 @@ public class AppsflyerPlugin: CAPPlugin, AppsFlyerLibDelegate {
     }
 
     public func onConversionDataSuccess(_ installData: [AnyHashable: Any]) {
-        print("AppsFlyerPlugin onConversionDataSuccess")
+        // print("AppsFlyerPlugin onConversionDataSuccess")
         notifyListeners("onConversionDataSuccess", data: ["installData": installData], retainUntilConsumed: true)
 
         for (key, value) in installData {
@@ -261,12 +269,12 @@ public class AppsflyerPlugin: CAPPlugin, AppsFlyerLibDelegate {
     }
 
     public func onConversionDataFail(_ error: Error) {
-        print("AppsFlyerPlugin onConversionDataFail")
+        // print("AppsFlyerPlugin onConversionDataFail")
         notifyListeners("onConversionDataFail", data: ["error": error], retainUntilConsumed: true)
     }
 
     public func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
-        print("AppsFlyerPlugin onAppOpenAttribution")
+        // print("AppsFlyerPlugin onAppOpenAttribution")
         notifyListeners("onAppOpenAttribution", data: ["attributionData": attributionData], retainUntilConsumed: true)
 
         for (key, value) in attributionData {
@@ -275,7 +283,7 @@ public class AppsflyerPlugin: CAPPlugin, AppsFlyerLibDelegate {
     }
 
     public func onAppOpenAttributionFailure(_ error: Error) {
-        print("AppsFlyerPlugin onAppOpenAttributionFailure")
+        // print("AppsFlyerPlugin onAppOpenAttributionFailure")
         notifyListeners("onAppOpenAttributionFailure", data: ["error": error], retainUntilConsumed: true)
     }
 }

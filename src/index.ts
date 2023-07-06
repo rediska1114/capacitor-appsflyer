@@ -16,6 +16,19 @@ export class Appsflyer {
   private plugin = CapacitorAppsflyer;
 
   addListener = this.plugin.addListener;
+
+  initSdk(
+    devKey: string,
+    appId: string,
+    options: {
+      isDebug?: boolean;
+      waitForATTUserAuthorization?: number;
+      useUninstallSandbox?: boolean;
+    } = {},
+  ) {
+    return this.plugin.initSdk({ devKey, appId, ...options });
+  }
+
   /**
    *
    * @param {string} [currencyCode=USD] http://www.xe.com/iso4217.php

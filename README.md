@@ -4,6 +4,7 @@ Currently only works on ios, but android support will be coming soon
 
 # Available methods:
 
+- `initSdk()`
 - `setCurrencyCode()`
 - `setСustomerUserID()`
 - `anonymizeUser()`
@@ -52,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
     ...
-	Appsflyer.shared.application(open: url, options: options)
+	  Appsflyer.shared.application(open: url, options: options)
     ...
   }
 
@@ -115,11 +116,18 @@ export class AppComponent {
                 this.appsflyer.addListener('onConversionDataSuccess', (data) => {
 					console.log('AppsflyerPlugin onConversionDataSuccess', data)
 				})
-            })
+        this.appsflyer.initSdk('YOUR_APPSFLYER_DEV_KEY', '1234556', { waitForATTUserAuthorization: 150 })
+        })
     }
 }
 
 ```
+
+## BREAKING CHANGES in 2.x.x version
+
+- Add support for Capacitor 5
+
+- Remove automatic initialization of the SDK. Now you need to call `initSdk()` method manually.
 
 ## BREAKING CHANGES in 1.x.x version
 

@@ -1,4 +1,4 @@
-import { PluginListenerHandle } from '@capacitor/core';
+import type { PluginListenerHandle } from '@capacitor/core';
 
 export type ConversionDataSuccessListener = (data: {
   installData: any;
@@ -10,6 +10,13 @@ export type AppOpenAttributionListener = (data: {
 export type AppOpenAttributionFailureListener = (data: { error: any }) => void;
 
 export interface AppsflyerPlugin {
+  initSdk(options: {
+    devKey: string;
+    appId: string;
+    isDebug?: boolean;
+    waitForATTUserAuthorization?: number;
+    useUninstallSandbox?: boolean;
+  }): Promise<void>;
   setCurrencyCode(options: { currencyCode: string }): Promise<void>;
   setСustomerUserID(options: { customerUserID: string }): Promise<void>;
   anonymizeUser(options: { value: boolean }): Promise<void>;
